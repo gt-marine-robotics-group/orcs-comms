@@ -41,6 +41,9 @@ void setup() {
 
 void loop() {
   // Check remote control state
-
+  
+  // Update and transmit motor output values
+  
+  // Update vehicle state and light tower
 
 }
