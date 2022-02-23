@@ -1,9 +1,10 @@
+#include <ServoInput.h>
+
 /*
   GITMRG OrangeRX-based Remote Control System firmware
 
-  v0.1
-  modified 20 FEB 2022
-  by Sean Fish
+  v0.1 - FEB 2022
+  Sean Fish, Nikolay Tranakiev
 
   Hardware
    - ORX R615X 6CH 2.4GHz 
@@ -16,6 +17,7 @@
   Resources
   https://whyyesteam.wordpress.com/2019/01/09/using-an-rc-radio-controller-with-your-robot/
   https://info.bannerengineering.com/cs/groups/public/documents/literature/159857.pdf
+  https://github.com/dmadison/ServoInput/blob/master/examples/RC_Receiver/RC_Receiver.ino
 */
 
 // PINS -------------------------------------------------------------
@@ -29,14 +31,26 @@ const int ORX_THRO_PIN = 6;
 // VARS -------------------------------------------------------------
 int vehicleState;
 
-
 // DEVICES ----------------------------------------------------------
+ServoInputPin<ORX_AUX1_PIN> orx_aux1;
+ServoInputPin<ORX_GEAR_PIN> orx_gear;
+ServoInputPin<ORX_RUDD_PIN> orx_rudd;
+ServoInputPin<ORX_ELEV_PIN> orx_elev;
+ServoInputPin<ORX_AILE_PIN> orx_aile;
+ServoInputPin<ORX_THRO_PIN> orx_thro;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("ORCS COMMS INIT");
+  Serial.println("ORCS COMMS INITIALIZING...");
   // Setup pins for reading ORX PWM signal
-  attachInterrupt(digitalPinToInterrupt(ORX_AUX1_PIN), auxChange, CHANGE);
+  int num = 0;
+  while (!ServoInput.available()) {
+    Serial.print("Waiting for signals... ");
+    Serial.println(num);
+  }
+  Serial.println("==================================================");
+  Serial.println("============ ORCS COMMS INIT COMPLETE ============");
+  Serial.println("==================================================");
 }
 
 void loop() {
