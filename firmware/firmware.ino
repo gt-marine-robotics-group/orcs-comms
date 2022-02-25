@@ -55,9 +55,15 @@ void setup() {
 
 void loop() {
   // Check remote control state
-  
+    Serial.println(vehicleState);
   // Update and transmit motor output values
-  
+    orx_aux1 = ??
+    orx_gear = 
+    orx_rudd = 
+    orx_elev = 
+    orx_aile = 
+    orx_thro = 
   // Update vehicle state and light tower
+    vehicleState = 
 
 }
