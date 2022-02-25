@@ -30,14 +30,19 @@ const int ORX_THRO_PIN = 6;
 
 // VARS -------------------------------------------------------------
 int vehicleState;
+bool killed;
+int state;
+int xTranslation;
+int yTranslation;
+int yaw;
 
 // DEVICES ----------------------------------------------------------
-ServoInputPin<ORX_AUX1_PIN> orx_aux1;
-ServoInputPin<ORX_GEAR_PIN> orx_gear;
-ServoInputPin<ORX_RUDD_PIN> orx_rudd;
-ServoInputPin<ORX_ELEV_PIN> orx_elev;
-ServoInputPin<ORX_AILE_PIN> orx_aile;
-ServoInputPin<ORX_THRO_PIN> orx_thro;
+ServoInputPin<ORX_AUX1_PIN> orxAux1; // 3 states
+ServoInputPin<ORX_GEAR_PIN> orxGear; // 2 states
+ServoInputPin<ORX_RUDD_PIN> orxRudd; // Continuous
+ServoInputPin<ORX_ELEV_PIN> orxElev; // Continuous
+ServoInputPin<ORX_AILE_PIN> orxAile; // Continuous
+ServoInputPin<ORX_THRO_PIN> orxThro; // Continuous
 
 void setup() {
   Serial.begin(9600);
@@ -55,9 +60,15 @@ void setup() {
 
 void loop() {
   // Check remote control state
-  
+    Serial.println(vehicleState);
   // Update and transmit motor output values
-  
+    killed = orxGear.getBoolean();
+    state = orxAux1.map(0, 3);
+    xTranslation = orxElev.map(-100, 100);
+    yTranslation = orxAile.map(-100, 100);
+    yaw = orxRudd.map(-100, 100);
+
   // Update vehicle state and light tower
+//     vehicleState = 
 
 }
