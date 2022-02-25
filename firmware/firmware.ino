@@ -4,7 +4,7 @@
   GITMRG OrangeRX-based Remote Control System firmware
 
   v0.1 - FEB 2022
-  Sean Fish, Nikolay Tranakiev
+  Sean Fish, Nikolay Tranakiev, Jane Crowley
 
   Hardware
    - ORX R615X 6CH 2.4GHz 
